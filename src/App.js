@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import Navbar from './components/Navbar';
 import './App.css';
+import { Redirect } from 'react-router-dom';
+
+
+import Home from './components/pages/Home';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Profile from './components/pages/Profile';
+import Hometown from './components/pages/Hometown';
+import Food from './components/pages/Food';
+import Tourist from './components/pages/Tourist';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path='/quiz1' exact component={Home} />
+          <Redirect exact from='/' to='/quiz1' />
+          <Route path='/quiz1/profile' component={Profile} /> 
+          <Route path='/quiz1/hometown' component={Hometown} />
+          <Route path='/quiz1/food' component={Food} /> 
+          <Route path='/quiz1/tourist' component={Tourist} /> 
+        </Switch>
+      </Router>
+    </>
   );
 }
 
